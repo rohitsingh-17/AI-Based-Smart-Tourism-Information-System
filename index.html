@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YatraAI — Smart Tourism & Personalized Trip Planner</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Navbar -->
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-sky-600 text-white font-extrabold flex items-center justify-center shadow-sm">
+          YA
+        </div>
+        <div>
+          <span class="font-extrabold text-lg text-slate-900">Yatra<span class="text-sky-600">AI</span></span>
+          <span class="hidden sm:inline-block text-xs text-slate-500 ml-2">Smart Tourism Information System</span>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
+        <button id="nav-btn-planner" data-section="planner" class="nav-section-btn active-nav px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all">
+          Trip Planner
+        </button>
+        <button id="nav-btn-explore" data-section="explore" class="nav-section-btn text-slate-700 hover:text-slate-900 px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all">
+          Explore Places
+        </button>
+        <button id="nav-btn-about" data-section="about" class="nav-section-btn text-slate-700 hover:text-slate-900 px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all">
+          About Project
+        </button>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <select id="top-city-select" aria-label="Select Destination" class="bg-slate-100 border border-slate-200 text-slate-800 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-lg focus:outline-none focus:border-sky-500">
+          <option value="jaipur">Jaipur</option>
+          <option value="goa">Goa</option>
+          <option value="manali">Manali</option>
+        </select>
+        <button id="btn-open-export" class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs sm:text-sm font-semibold transition-all">
+          Save / Share Plan
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+
+    <!-- SECTION 1: TRIP PLANNER -->
+    <section id="section-planner" class="space-y-6">
+      <!-- Hero Banner -->
+      <div class="relative rounded-2xl overflow-hidden shadow-md border border-slate-200">
+        <img src="assets/hero.jpg" alt="Scenic India Smart Tourism Banner" class="w-full h-48 sm:h-60 object-cover max-w-full" />
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/60 to-transparent flex flex-col justify-center p-6 sm:p-8 max-w-xl text-white">
+          <span class="text-xs font-semibold uppercase tracking-wider bg-sky-500/30 border border-sky-300/40 px-2.5 py-0.5 rounded-full w-fit mb-2">
+            AI-Assisted Trip &amp; Route Planner
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold leading-tight">
+            Plan Your Hassle-Free Trip Based on Your Budget &amp; Interests
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-200 mt-2">
+            Choose your destination, set your budget, and pick what you love. We create a personalized day-by-day itinerary with the shortest travel route between attractions.
+          </p>
+        </div>
+      </div>
+
+      <!-- Planner Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+        <!-- Left Column: User Preferences -->
+        <div class="lg:col-span-4 bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h2 class="text-base font-bold text-slate-900">Your Trip Preferences</h2>
+            <button id="btn-reset-all" type="button" class="text-xs text-sky-600 hover:underline font-medium">Reset</button>
+          </div>
+
+          <!-- Destination Cards -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">1. Choose Destination</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button type="button" data-city="jaipur" class="city-card selected p-2 rounded-xl border border-slate-200 text-left transition-all">
+                <img src="assets/jaipur.jpg" alt="Jaipur" class="w-full h-14 object-cover rounded-lg mb-1.5 max-w-full" />
+                <div class="text-xs font-bold text-slate-900 truncate">Jaipur</div>
+                <div class="text-[10px] text-slate-500">Forts &amp; Culture</div>
+              </button>
+              <button type="button" data-city="goa" class="city-card p-2 rounded-xl border border-slate-200 text-left transition-all">
+                <img src="assets/goa.jpg" alt="Goa" class="w-full h-14 object-cover rounded-lg mb-1.5 max-w-full" />
+                <div class="text-xs font-bold text-slate-900 truncate">Goa</div>
+                <div class="text-[10px] text-slate-500">Beaches &amp; Fun</div>
+              </button>
+              <button type="button" data-city="manali" class="city-card p-2 rounded-xl border border-slate-200 text-left transition-all">
+                <img src="assets/manali.jpg" alt="Manali" class="w-full h-14 object-cover rounded-lg mb-1.5 max-w-full" />
+                <div class="text-xs font-bold text-slate-900 truncate">Manali</div>
+                <div class="text-[10px] text-slate-500">Mountains</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Budget Slider -->
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label for="budget-slider" class="text-xs font-semibold uppercase tracking-wider text-slate-500">2. Total Trip Budget</label>
+              <span id="budget-label" class="text-base font-extrabold text-sky-600">₹15,000</span>
+            </div>
+            <input id="budget-slider" type="range" min="5000" max="50000" step="1000" value="15000" class="w-full accent-sky-600 cursor-pointer" />
+            <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+              <span>₹5,000</span>
+              <span>₹25,000</span>
+              <span>₹50,000</span>
+            </div>
+          </div>
+
+          <!-- Trip Duration & Travel Style -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label for="select-days" class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">3. Duration</label>
+              <select id="select-days" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-800">
+                <option value="1">1 Day</option>
+                <option value="2">2 Days</option>
+                <option value="3" selected>3 Days</option>
+                <option value="4">4 Days</option>
+              </select>
+            </div>
+            <div>
+              <label for="select-style" class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">4. Stay Tier</label>
+              <select id="select-style" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-800">
+                <option value="budget" selected>🎒 Budget / Student</option>
+                <option value="standard">🏨 Standard Hotel</option>
+                <option value="comfort">✨ Comfort Resort</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Local Transport -->
+          <div>
+            <label for="select-transport" class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">5. Local Transport Mode</label>
+            <select id="select-transport" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-800">
+              <option value="bus">🚌 Public Bus / Shared Auto (₹4/km)</option>
+              <option value="scooter" selected>🛵 Rental Scooter / Bike (₹9/km)</option>
+              <option value="cab">🚕 Private AC Cab (₹18/km)</option>
+            </select>
+          </div>
+
+          <!-- Interests -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">6. Your Interests</label>
+            <div id="interests-wrapper" class="flex flex-wrap gap-2">
+              <button type="button" data-tag="heritage" class="interest-tag selected px-3 py-1.5 rounded-xl border border-slate-200 text-xs transition-all">🏛️ Heritage &amp; Forts</button>
+              <button type="button" data-tag="nature" class="interest-tag selected px-3 py-1.5 rounded-xl border border-slate-200 text-xs transition-all">🌿 Nature &amp; Views</button>
+              <button type="button" data-tag="adventure" class="interest-tag px-3 py-1.5 rounded-xl border border-slate-200 text-xs transition-all">🪂 Adventure</button>
+              <button type="button" data-tag="food" class="interest-tag selected px-3 py-1.5 rounded-xl border border-slate-200 text-xs transition-all">🍛 Local Food</button>
+              <button type="button" data-tag="shopping" class="interest-tag px-3 py-1.5 rounded-xl border border-slate-200 text-xs transition-all">🛍️ Shopping</button>
+              <button type="button" data-tag="photography" class="interest-tag px-3 py-1.5 rounded-xl border border-slate-200 text-xs transition-all">📸 Photography</button>
+            </div>
+          </div>
+
+          <button id="btn-recalculate" type="button" class="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-sm shadow-sm transition-all">
+            Generate My Personalized Itinerary
+          </button>
+        </div>
+
+        <!-- Right Column: Itinerary, Map & Budget Breakdown -->
+        <div class="lg:col-span-8 space-y-6">
+
+          <!-- Top Summary Cards -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+              <div class="text-xs text-slate-500">Estimated Trip Cost</div>
+              <div id="stat-total-cost" class="text-xl font-extrabold text-slate-900 mt-1">₹11,450</div>
+              <div id="stat-budget-note" class="text-xs font-medium text-emerald-600 mt-1">✓ Within budget</div>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+              <div class="text-xs text-slate-500">Total Route Distance</div>
+              <div id="stat-total-km" class="text-xl font-extrabold text-sky-600 mt-1">36.4 km</div>
+              <div class="text-xs text-slate-500 mt-1">Shortest city route</div>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+              <div class="text-xs text-slate-500">Attractions Included</div>
+              <div id="stat-places-count" class="text-xl font-extrabold text-slate-900 mt-1">7 Places</div>
+              <div class="text-xs text-slate-500 mt-1">Paced across trip</div>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+              <div class="text-xs text-slate-500">Interest Match</div>
+              <div id="stat-match-score" class="text-xl font-extrabold text-emerald-600 mt-1">92% Match</div>
+              <div class="text-xs text-slate-500 mt-1">Tailored to you</div>
+            </div>
+          </div>
+
+          <!-- Interactive Route Map + Budget Breakdown -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-5 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <div class="md:col-span-7 flex flex-col">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-sm font-bold text-slate-900">Optimal Tourist Route Map</h3>
+                <span class="text-[11px] text-slate-500">Blue lines show your shortest travel path</span>
+              </div>
+              <div id="route-map-wrapper" class="relative w-full h-60 bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
+                <canvas id="routeMapCanvas" class="w-full h-full"></canvas>
+              </div>
+            </div>
+            <div class="md:col-span-5 flex flex-col justify-between space-y-4">
+              <div>
+                <h3 class="text-sm font-bold text-slate-900 mb-3">Estimated Budget Breakdown</h3>
+                <div id="budget-bars-container" class="space-y-3"></div>
+              </div>
+              <div class="p-3 rounded-xl bg-sky-50 border border-sky-100 text-xs text-sky-900">
+                <strong>💡 Smart Travel Tip:</strong> <span id="city-travel-tip"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day-by-Day Itinerary -->
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h2 class="text-base font-bold text-slate-900">Day-by-Day Personalized Itinerary</h2>
+                <p class="text-xs text-slate-500">Ordered automatically to minimize travel time and cab/scooter fare</p>
+              </div>
+              <div id="day-filter-tabs" class="flex flex-wrap gap-1.5"></div>
+            </div>
+            <div id="itinerary-list" class="space-y-4"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: EXPLORE PLACES -->
+    <section id="section-explore" class="hidden space-y-5">
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900">Explore Tourist Attractions</h2>
+          <p class="text-xs text-slate-500">Browse popular spots and add or remove them from your personalized trip plan.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <input id="place-search-input" type="text" placeholder="Search places..." class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-sky-500" />
+          <select id="place-category-select" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800">
+            <option value="all">All Categories</option>
+            <option value="heritage">Heritage &amp; Forts</option>
+            <option value="nature">Nature &amp; Views</option>
+            <option value="adventure">Adventure</option>
+            <option value="food">Local Food</option>
+            <option value="shopping">Shopping</option>
+          </select>
+        </div>
+      </div>
+      <div id="places-directory-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- SECTION 3: ABOUT PROJECT -->
+    <section id="section-about" class="hidden space-y-5">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-3 py-1 rounded-full">
+          College Project Overview
+        </span>
+        <h2 class="text-xl font-extrabold text-slate-900">About YatraAI — Smart Tourism Information System</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          <strong>YatraAI</strong> is a user-friendly Smart Tourism web application designed to help tourists plan hassle-free trips. Tourists simply select their destination, budget, trip duration, and personal interests, and the system generates a complete day-by-day itinerary with optimal travel routes and transparent cost estimates.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <h3 class="text-sm font-bold text-slate-900">1. Personalized Recommendations</h3>
+            <p class="text-xs text-slate-600 mt-1">Matches tourist attractions to user interests (Heritage, Nature, Adventure, Food, Shopping) and stay preferences.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <h3 class="text-sm font-bold text-slate-900">2. Smart Budget Planner</h3>
+            <p class="text-xs text-slate-600 mt-1">Calculates realistic expenses across hotels, local transport, food, and entry tickets so travelers stay within budget.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <h3 class="text-sm font-bold text-slate-900">3. Optimal Route Sequencing</h3>
+            <p class="text-xs text-slate-600 mt-1">Finds the shortest path between attractions each day so tourists spend less time in traffic and more time exploring.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Export / Save Modal -->
+  <div id="export-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white max-w-lg w-full rounded-2xl p-6 border border-slate-200 shadow-xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="text-base font-bold text-slate-900">Your Trip Itinerary Summary</h3>
+        <button id="btn-close-export" type="button" class="text-slate-400 hover:text-slate-700 font-bold text-sm">✕</button>
+      </div>
+      <pre id="export-summary-text" class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-700 overflow-x-auto max-h-72 overflow-y-auto whitespace-pre-wrap"></pre>
+      <div class="flex items-center justify-between">
+        <span id="copy-status-msg" class="text-xs text-emerald-600 font-semibold opacity-0 transition-opacity">✓ Copied to clipboard!</span>
+        <button id="btn-copy-itinerary" type="button" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-all">
+          Copy Itinerary
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="border-t border-slate-200 bg-white py-4 px-6 text-center text-xs text-slate-500">
+    YatraAI — AI-Based Smart Tourism Information System • College Project
+  </footer>
+
+  <script src="js/destinations.js"></script>
+  <script src="js/routeOptimizer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
